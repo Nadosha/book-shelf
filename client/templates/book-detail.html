@@ -1,0 +1,26 @@
+<template name="bookDetail">
+	<div class="container" style="padding-top: 60px">
+		<h1>Book details</h1>
+		<hr>
+		<div class="row">
+			{{#if Template.subscriptionsReady}}
+			{{#with book}}
+			<div class="col-sm-4">
+				<img src="{{book.img}}" class="img-responsive" alt="{{book.name}} cover">
+			</div>
+			<div class="col-sm-8">
+				<button type="button" class="close" id="removeBook"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button>
+				<h1>{{name}}</h1>
+				<h3>{{author}}</h3>
+				<p><strong>ISNB: </strong>{{isbn}}</p>
+				<p><strong>Published: </strong> {{fullMonthAndYear pubDate}}</p>
+				<p><strong>Added: </strong>{{fullMonthAndYear createdDate}}</p>
+				<a href="{{pathFor 'editBook'}}" class="funbtn funbtn-block funbtn-blue" id="addBook">Edit</a>
+			</div>
+				{{else}}
+				<h1>Loading...</h1>
+				{{/with}}
+			{{/if}}
+		</div>
+	</div>
+</template>

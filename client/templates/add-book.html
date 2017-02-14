@@ -1,0 +1,149 @@
+<template name="addBook">
+
+	<div class="container" style="padding-top: 60px"> 
+		<div class="row first-block">
+		{{#if isEditBooks}}
+			<h1>Add new book</h1>
+			{{else}}
+			<h1>Edit book</h1>
+		{{/if}}
+			<hr>
+		</div>
+		<div class="row second-block">
+			{{#if isEditBooks}}
+				{{> addBookForm}}
+				{{else}}
+				{{> editBookForm}}
+			{{/if}}	
+		</div>
+	</div>
+
+</template>
+
+<template name="addBookForm">
+
+	<form id="bookForm">
+		<div class="col-sm-4">
+			<!--Image cover uploader-->
+			{{#if image}}
+            		<img id="uloaded-ph" src="{{image.url}}" class="img-responsive" alt="Upload Photo">
+            		{{else}}
+            		<img id="uloaded-ph" src="img/placeholder.png" class="img-responsive" alt="Upload Photo">
+           	{{/if}}
+           	<div class="input-group image-addform" style="margin-top: 35px">
+           	  	<span class="funbtn funbtn-yellow funbtn-block funbtn-file_upload" > 
+           	    	Upload image <i class="fa fa-camera-retro" aria-hidden="true"></i>
+           	    	<input id='book-img' name="cover" type="file">
+           	  	</span>
+           	</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="input-group" id="book-name-input">
+	  			<label for="book-name">Title</label>
+	  			<div class="input-item">
+	  				<span class="fa fa-font input-helper"></span>
+	  				<input id="book-name" type="text" name="title" placeholder="Title of your book">
+	  				<span id="input-error" class="fa fa-exclamation-triangle input-error hidden" ></span>
+	  				<i id="input-success" class="fa fa-check input-check hidden" ></i>
+	  			</div>
+  			</div>
+  			<div class="input-group" id="book-author-input">
+	  			<label for="book-author">Author</label>
+	  			<div class="input-item">
+	  				<span class="fa fa-user input-helper"></span>
+	  				<input id="book-author" type="text" name="author" placeholder="Name and lastname of author">
+	  				<span id="input-error" class="fa fa-exclamation-triangle input-error hidden" ></span>
+	  				<i id="input-success" class="fa fa-check input-check hidden" ></i>
+	  			</div>
+  			</div>
+  			<div class="inline-input">
+  				<div class="input-group" id="book-pubpate-input">
+	  				<label for="book-pubpate">When book was published</label>
+	  				<div class="input-item">
+	  					<span class="fa fa-calendar input-helper"></span>
+	  					<input id="book-pubpate" type="date" name="pubpate">
+	  					<span id="input-error" class="fa fa-exclamation-triangle input-error hidden" ></span>
+	  					<i id="input-success" class="fa fa-check input-check hidden" ></i>
+	  				</div>
+  				</div>
+  				<div class="input-group" id="book-isbn-input">
+	  				<label for="book-isbn">ISBN</label>
+	  				<div class="input-item">
+	  					<span class="fa fa-book input-helper"></span>
+	  					<input id="book-isbn" type="number" name="isbn" placeholder="ISBN number">
+	  					<span id="input-error" class="fa fa-exclamation-triangle input-error hidden" ></span>
+	  					<i id="input-success" class="fa fa-check input-check hidden" ></i>
+	  				</div>
+  				</div>
+  			</div>
+  			<div class="button-group">
+  				<button type="submit" class="funbtn funbtn-green funbtn-block funbtn-big" id="submitBook">Add book</button>
+  			</div>
+		</div>
+	</form>
+
+</template>
+
+<template name="editBookForm">
+
+	<form id="bookForm">
+		<div class="col-sm-4">
+			<!--Image cover uploader-->
+			{{#if image.url}}
+            		<img id="uloaded-ph" src="{{image.url}}" class="img-responsive" alt="Upload Photo">
+            		{{else}}
+            		<img id="uloaded-ph" src="{{book.img}}" class="img-responsive" alt="Upload Photo">
+           	{{/if}}
+           	<div class="input-group image-addform" style="margin-top: 35px">
+           	  	<span class="funbtn funbtn-yellow funbtn-block funbtn-file_upload" > 
+           	    	Upload image <i class="fa fa-camera-retro" aria-hidden="true"></i>
+           	    	<input id='book-img' name="cover" type="file">
+           	  	</span>
+           	</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="input-group" id="book-name-input">
+	  			<label for="book-name">Title</label>
+	  			<div class="input-item">
+	  				<span class="fa fa-font input-helper"></span>
+	  				<input id="book-name" type="text" name="title" placeholder="Title of your book" value="{{book.name}}">
+	  				<span id="input-error" class="fa fa-exclamation-triangle input-error hidden" ></span>
+	  				<i id="input-success" class="fa fa-check input-check hidden" ></i>
+	  			</div>
+  			</div>
+  			<div class="input-group" id="book-author-input">
+	  			<label for="book-author">Author</label>
+	  			<div class="input-item">
+	  				<span class="fa fa-user input-helper"></span>
+	  				<input id="book-author" type="text" name="author" placeholder="Name and lastname of author" value="{{book.author}}">
+	  				<span id="input-error" class="fa fa-exclamation-triangle input-error hidden" ></span>
+	  				<i id="input-success" class="fa fa-check input-check hidden" ></i>
+	  			</div>
+  			</div>
+  			<div class="inline-input">
+  				<div class="input-group" id="book-pubpate-input">
+	  				<label for="book-pubpate">When book was published</label>
+	  				<div class="input-item">
+	  					<span class="fa fa-calendar input-helper"></span>
+	  					<input id="book-pubpate" type="date" name="pubpate" value="{{inputFormat book.pubDate}}">
+	  					<span id="input-error" class="fa fa-exclamation-triangle input-error hidden" ></span>
+	  					<i id="input-success" class="fa fa-check input-check hidden" ></i>
+	  				</div>
+  				</div>
+  				<div class="input-group" id="book-isbn-input">
+	  				<label for="book-isbn">ISBN</label>
+	  				<div class="input-item">
+	  					<span class="fa fa-book input-helper"></span>
+	  					<input id="book-isbn" type="number" name="isbn" placeholder="ISBN number" value="{{book.isbn}}">
+	  					<span id="input-error" class="fa fa-exclamation-triangle input-error hidden" ></span>
+	  					<i id="input-success" class="fa fa-check input-check hidden" ></i>
+	  				</div>
+  				</div>
+  			</div>
+  			<div class="button-group">
+  				<button type="submit" class="funbtn funbtn-green funbtn-block funbtn-big" id="submitBook">Add book</button>
+  			</div>
+		</div>
+	</form>
+
+</template>

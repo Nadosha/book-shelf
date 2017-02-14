@@ -1,0 +1,49 @@
+html, body, #__blaze-root {
+	height: 100%;
+}
+.main-container {
+	margin-top: 70px;
+}
+.caption h1{
+	font-size: 24px;
+	color: #34495e;
+}
+.caption h2 {
+	font-size: 14px;
+	margin-top: 5px;
+	color: #7f8c8d;
+	margin-bottom: 20px !important;
+}
+
+.caption p {
+	color: #34495e;
+	line-height: 15px;
+}
+.navbar-white {
+	background: #fff;
+	border-bottom: 1px solid #ecf0f1;
+}
+
+.navbar-brand .fa{
+    display: inline;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 60px;
+    background: #e67e22;
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+    margin: 0px 20px 10px 0px;
+}
+.fa-brand {
+	display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 60px;
+    background: #e67e22;
+    line-height: 55px !important;
+    text-align: center;
+    color: #fff;
+    margin: 0 auto;
+}

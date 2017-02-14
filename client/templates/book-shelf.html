@@ -1,0 +1,43 @@
+<template name="bookShelf">
+	
+	<div class="container" style="padding-top: 60px">
+		<h1>Book shelf</h1>
+		<hr>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+		{{#if Template.subscriptionsReady}}
+			{{#if ifAnyBook}}
+				{{#each books}}
+					{{> bookItem}}
+				{{/each}}
+				{{else}}
+				<h1 style="color: #bdc3c7; text-align: center">Your library is empty.<br>
+				 	<a href="{{pathFor 'addBook'}}"> Add books</a>
+				</h1>
+			{{/if}}
+		{{/if}}
+		</div>
+	</div>
+	<div class="container">
+		<button id="loadMore" class="funbtn funbtn-green funbtn-block" style="margin-top: 20px; margin-bottom: 20px">Load more</button>
+	</div>
+
+</template>
+
+<template name="bookItem">
+
+	<div class="col-sm-2">
+		<div class="thumbnail">
+			<a href="{{pathFor 'bookDetail'}}" >
+				<img src="{{img}}" class="img-responsive" alt="{{name}}">
+			</a>
+     		<div class="caption">
+        		<h1>{{name}}</h1>
+        		<h2>{{author}}</h2>
+        		<p>Published: {{fullMonthAndYear pubDate}}</p>
+      		</div>
+    	</div>		
+	</div>
+	
+</template>
