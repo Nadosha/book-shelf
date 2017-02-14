@@ -1,4 +1,4 @@
-BookShell
+BookShelf
 
 
 Build with: Meteor & Blase
